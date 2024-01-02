@@ -25,5 +25,15 @@ public class Handler {
         }
     }
 
-    
+    public void addObj(GameObject obj){
+        gameObjs.add(obj);
+    }
+
+    public void removeObj(GameObject obj){
+        gameObjs.remove(obj);
+    }
+
+    public List<GameObject> getGameObjs(){
+        return gameObjs;
+    }
 }
