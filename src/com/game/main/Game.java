@@ -94,6 +94,7 @@ public class Game  extends Canvas implements Runnable{
             this.createBufferStrategy(3);
             return;
         }
+        System.gc();
 
         //draw graphics
         Graphics g = buf.getDrawGraphics();
