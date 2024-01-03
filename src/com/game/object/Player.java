@@ -32,4 +32,26 @@ public class Player extends GameObject{
     public Rectangle getBounds() {
         return null;
     }
+
+    public Rectangle getBoundsTop(){
+        return null;
+    }
+
+    public Rectangle getBoundsRight(){
+        return null;
+    }
+
+    public Rectangle getBoundsLeft(){
+
+    }
+
+    private void showBounds(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+
+        g.setColor(Color.RED);
+        g2d.draw(getBounds());
+        g2d.draw(getBoundsRight());
+        g2d.draw(getBoundsLeft());
+        g2d.draw(getBoundsTop());
+    }
 }
