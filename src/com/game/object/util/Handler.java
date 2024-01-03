@@ -1,6 +1,7 @@
 package com.game.object.util;
 
 import com.game.object.GameObject;
+import com.game.object.Player;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class Handler {
     private List<GameObject> gameObjs;
-
+    private Player player;
     public Handler(){
         gameObjs = new LinkedList<GameObject>();
     }
@@ -35,5 +36,28 @@ public class Handler {
 
     public List<GameObject> getGameObjs(){
         return gameObjs;
+    }
+
+    public int setPlayer(Player player){
+        if(this.player != null){
+            return -1;
+        }
+
+        addObj(player);
+        this.player = player;
+        return 0;
+    }
+
+    public int removePlayer(Player player){
+        if(player==null)
+            return -1;
+
+        removeObj(player);
+        this.player = null;
+        return 0;
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 }
