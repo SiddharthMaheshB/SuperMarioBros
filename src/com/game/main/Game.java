@@ -20,13 +20,13 @@ public class Game  extends Canvas implements Runnable{
     private Handler handler;
 
     public Game() {
-        initalize();
+        initialize();
     }
     public static void main(String[] args) {
         new Game();
     }
 
-    private void initalize(){
+    private void initialize(){
         handler = new Handler();
         new Windows(WINDOW_WIDTH, WINDOW_HEIGHT,NAME, this);
 
