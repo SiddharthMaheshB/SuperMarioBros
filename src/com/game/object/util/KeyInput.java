@@ -19,7 +19,7 @@ public class KeyInput extends KeyAdapter {
         }
 
         //jump
-        if(key == KeyEvent.VK_SPACE || key==KeyEvent.VK_W){
+        if(key==KeyEvent.VK_W){
             if(!handler.getPlayer().hasJumped()){
                 handler.getPlayer().setVelY(-5);
                 keyDown[0] = true;
@@ -29,13 +29,13 @@ public class KeyInput extends KeyAdapter {
         }
 
         //left
-        if(key == KeyEvent.VK_A || key==KeyEvent.VK_LEFT){
+        if(key == KeyEvent.VK_A){
             handler.getPlayer().setVelX(-7);
             keyDown[1]=true;
         }
 
         //right
-        if(key==KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+        if(key==KeyEvent.VK_D){
             handler.getPlayer().setVelX(7);
             keyDown[2]=true;
         }
@@ -46,19 +46,19 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
 
-        if(key == KeyEvent.VK_SPACE || key==KeyEvent.VK_W){
+        if(key==KeyEvent.VK_W){
             keyDown[0]=false;
         }
 
-        if(key == KeyEvent.VK_A || key==KeyEvent.VK_LEFT){
+        if(key == KeyEvent.VK_A){
             keyDown[1]=false;
         }
 
-        if(key==KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            keyDown[1]=false;
+        if(key==KeyEvent.VK_D){
+            keyDown[2]=false;
         }
 
-        if(!keyDown[1] && !keyDown[2]){
+        if((!keyDown[1]) && (!keyDown[2])){
             handler.getPlayer().setVelX(0);
         }
     }
