@@ -1,6 +1,7 @@
 package com.game.main;
 
 import com.game.gfx.Windows;
+import com.game.object.Player;
 import com.game.object.util.Handler;
 
 import java.awt.*;
@@ -28,6 +29,8 @@ public class Game  extends Canvas implements Runnable{
 
     private void initialize(){
         handler = new Handler();
+
+        handler.setPlayer(new Player(32,32,1,handler));
         new Windows(WINDOW_WIDTH, WINDOW_HEIGHT,NAME, this);
 
         start();
@@ -98,7 +101,7 @@ public class Game  extends Canvas implements Runnable{
 
         //draw graphics
         Graphics g = buf.getDrawGraphics();
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(135, 206, 235));
         g.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
 
         handler.render(g);
