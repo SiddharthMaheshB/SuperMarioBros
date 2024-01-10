@@ -21,7 +21,7 @@ public class KeyInput extends KeyAdapter {
         //jump
         if(key == KeyEvent.VK_SPACE || key==KeyEvent.VK_W){
             if(!handler.getPlayer().hasJumped()){
-                handler.getPlayer().setVelY(-15);
+                handler.getPlayer().setVelY(-5);
                 keyDown[0] = true;
                 handler.getPlayer().setJumped(true);
             }
@@ -30,13 +30,13 @@ public class KeyInput extends KeyAdapter {
 
         //left
         if(key == KeyEvent.VK_A || key==KeyEvent.VK_LEFT){
-            handler.getPlayer().setVelX(-10);
+            handler.getPlayer().setVelX(-7);
             keyDown[1]=true;
         }
 
         //right
         if(key==KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            handler.getPlayer().setVelX(10);
+            handler.getPlayer().setVelX(7);
             keyDown[2]=true;
         }
 
@@ -61,6 +61,10 @@ public class KeyInput extends KeyAdapter {
         if(!keyDown[1] && !keyDown[2]){
             handler.getPlayer().setVelX(0);
         }
+    }
+
+    private int toInt(boolean bool){
+        return Boolean.compare(bool,false);
     }
 }
  
