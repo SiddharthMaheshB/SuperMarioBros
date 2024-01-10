@@ -21,7 +21,7 @@ public class KeyInput extends KeyAdapter {
         //jump
         if(key==KeyEvent.VK_W){
             if(!handler.getPlayer().hasJumped()){
-                handler.getPlayer().setVelY(-5);
+                handler.getPlayer().setVelY(-10);
                 keyDown[0] = true;
                 handler.getPlayer().setJumped(true);
             }
