@@ -1,5 +1,6 @@
 package com.game.main;
 
+import com.game.gfx.Camera;
 import com.game.gfx.Windows;
 import com.game.object.Block;
 import com.game.object.Player;
@@ -16,12 +17,16 @@ public class Game  extends Canvas implements Runnable{
     private static final String NAME = "Mario";
     private static final int WINDOW_WIDTH = 960;
     private static final int WINDOW_HEIGHT = 720;
+    private static final int SCREEN_WIDTH = WINDOW_WIDTH-67;
+    private static final int SCREEN_HEIGHT = WINDOW_HEIGHT;
+    private static final int SCREEN_OFFSET = 16*3;
+
 
     private boolean running;
 
     private Thread thread;
     private Handler handler;
-
+    private Camera cam;
     public Game() {
         initialize();
     }
@@ -42,7 +47,7 @@ public class Game  extends Canvas implements Runnable{
             handler.addObj(new Block(i*32, 32*15,32,32,1));
         }
 
-
+        cam = new Camera(0,SCREEN_OFFSET);
         new Windows(WINDOW_WIDTH, WINDOW_HEIGHT,NAME, this);
 
         start();
@@ -101,6 +106,8 @@ public class Game  extends Canvas implements Runnable{
 
     private void tick(){
         handler.tick();
+        cam.tick(handler.getPlayer());
+
     }
 
     private void render(){
@@ -113,10 +120,15 @@ public class Game  extends Canvas implements Runnable{
 
         //draw graphics
         Graphics g = buf.getDrawGraphics();
+        Graphics2D g2d = (Graphics2D) g;
+
+
         g.setColor(new Color(135, 206, 235));
         g.fillRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
 
+        g2d.translate(cam.getX(),cam.getY());
         handler.render(g);
+        g2d.translate(-cam.getX(),-cam.getY());
         //clean for next frame
         g.dispose();
         buf.show();
@@ -128,5 +140,13 @@ public class Game  extends Canvas implements Runnable{
 
     public static  int getWindowWidth(){
         return WINDOW_WIDTH;
+    }
+
+    public static int getScreenWidth(){
+        return SCREEN_WIDTH;
+    }
+
+    public static int getScreenHeight(){
+        return SCREEN_HEIGHT;
     }
 }
