@@ -17,6 +17,7 @@ public class Player extends GameObject{
     private BufferedImage[] spriteL, spriteS;
     private boolean jumped=false;
     int health;
+    int spriteIndex=0;
 
     public Player(float x, float y, int scale, Handler handler){
         super(x,y, ObjectId.Player,WIDTH, HEIGHT, scale);
@@ -38,10 +39,10 @@ public class Player extends GameObject{
     @Override
     public void render(Graphics g) {
         if(health==1){
-            g.drawImage(spriteS[0], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight()/2,null);
+            g.drawImage(spriteS[spriteIndex], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight()/2,null);
         }
         else if(health ==2){
-            g.drawImage(spriteL[0], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight(), null);
+            g.drawImage(spriteL[spriteIndex], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight(), null);
         }
         //showBounds(g);
     }

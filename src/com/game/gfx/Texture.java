@@ -6,7 +6,7 @@ import java.nio.Buffer;
 public class Texture {
     private final String PARENT_FOLDER = "/res/tile";
 
-    private final int MARIO_L_COUNT = 15;
+    private final int MARIO_L_COUNT = 21;
     private final int MARIO_S_COUNT = 14;
 
     private final int TILE_1_COUNT = 28;
@@ -28,7 +28,7 @@ public class Texture {
         loader = new BufferedImageLoader();
 
         try{
-            player_sheet = loader.loadImage(PARENT_FOLDER+"/NES - Super Mario Bros - Mario & Luigi.png");
+            player_sheet = loader.loadImage(PARENT_FOLDER+"/Mario&Luigi.png");
             enemy_sheet = loader.loadImage(PARENT_FOLDER+"/NES - Super Mario Bros - Enemies & Bosses.png");
             npc_sheet = loader.loadImage(PARENT_FOLDER+"/NES - Super Mario Bros - Items Objects and NPCs.png");
             block_sheet = loader.loadImage(PARENT_FOLDER+"/NES - Super Mario Bros - Item and Brick Blocks.png");
@@ -45,19 +45,20 @@ public class Texture {
     }
 
     private void getPlayerTextures(){
-        int x_off = 0;
-        int y_off = 32;
+        int x_off = 80;
+        int y_off = 1;
         int width = 16;
         int height = 32;
 
         for(int i=0;i<MARIO_L_COUNT;i++){
-            mario_l[i] = player_sheet.getSubimage(x_off + i*(width+4), y_off, width, height);
+            mario_l[i] = player_sheet.getSubimage(x_off + i*(width+1), y_off, width, height);
         }
 
+        y_off+=height+1;
         height = 16;
-        y_off -= (height+8);
+
         for(int i=0;i<MARIO_S_COUNT;i++){
-            mario_s[i] = player_sheet.getSubimage(x_off + i*(width+4), y_off, width, height);
+            mario_s[i] = player_sheet.getSubimage(x_off + i*(width+1), y_off, width, height);
         }
     }
 

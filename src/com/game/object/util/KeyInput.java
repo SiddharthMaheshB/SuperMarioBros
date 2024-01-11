@@ -19,7 +19,7 @@ public class KeyInput extends KeyAdapter {
         }
 
         //jump
-        if(key==KeyEvent.VK_W){
+        if(key==KeyEvent.VK_SPACE){
             if(!handler.getPlayer().hasJumped()){
                 handler.getPlayer().setVelY(-10);
                 keyDown[0] = true;
@@ -46,7 +46,7 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
 
-        if(key==KeyEvent.VK_W){
+        if(key==KeyEvent.VK_SPACE){
             keyDown[0]=false;
         }
 
@@ -63,8 +63,5 @@ public class KeyInput extends KeyAdapter {
         }
     }
 
-    private int toInt(boolean bool){
-        return Boolean.compare(bool,false);
-    }
 }
  

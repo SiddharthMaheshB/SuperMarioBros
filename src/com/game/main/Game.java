@@ -110,6 +110,12 @@ public class Game  extends Canvas implements Runnable{
     private void tick(){
         handler.tick();
         cam.tick(handler.getPlayer());
+        if(handler.getPlayer().getY()>720){
+            System.exit(0);
+        }
+    }
+
+    private void gameOver(){
 
     }
 
