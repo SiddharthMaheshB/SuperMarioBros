@@ -9,6 +9,9 @@ import org.w3c.dom.css.Rect;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.floor;
+
 public class Player extends GameObject{
     private static final float WIDTH = 16;
     private static final float HEIGHT = 32;
@@ -17,7 +20,7 @@ public class Player extends GameObject{
     private BufferedImage[] spriteL, spriteS;
     private boolean jumped=false;
     int health;
-    int spriteIndex=0;
+    private double spriteIndex=0;
 
     public Player(float x, float y, int scale, Handler handler){
         super(x,y, ObjectId.Player,WIDTH, HEIGHT, scale);
@@ -34,15 +37,19 @@ public class Player extends GameObject{
         setY(getVelY()+getY());
         applyGravity();
         collision();
+        if(getVelX()==0){
+            setSpriteIndex(0);
+        }
+        else setSpriteIndex(((getSpriteIndex())+0.1>3.9)?(1):((getSpriteIndex())+0.1));
     }
 
     @Override
     public void render(Graphics g) {
         if(health==1){
-            g.drawImage(spriteS[spriteIndex], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight()/2,null);
+            g.drawImage(spriteS[(int) floor(spriteIndex)], (((int) getWidth()>0)?((int) getX()):((int)(getX()+getAbsWidth()))), (int) getY(), abs((int) getWidth()), abs((int) getHeight()/2),null);
         }
         else if(health ==2){
-            g.drawImage(spriteL[spriteIndex], (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight(), null);
+            g.drawImage(spriteL[(int) floor(spriteIndex)], (((int) getWidth()>0)?((int) getX()):((int)(getX()+getAbsWidth()))), (int) getY(), (int) getWidth(), (int) getHeight(), null);
         }
         //showBounds(g);
     }
@@ -54,19 +61,19 @@ public class Player extends GameObject{
             if((temp.getId()==ObjectId.Block)||(temp.getId()==ObjectId.Pipe)){
 
                 if(getBounds().intersects(temp.getBounds())){
-                    setY(temp.getY()-getHeight());
+                    setY(temp.getY()-getAbsHeight());
                     setVelY(0);
                     jumped=false;
                 }
                 if(getBoundsTop().intersects(temp.getBounds())){
-                    setY(temp.getY()+temp.getHeight());
+                    setY(temp.getY()+temp.getAbsHeight());
                     setVelY(0);
                 }
                 if(getBoundsRight().intersects(temp.getBounds())){
-                    setX(temp.getX()-getWidth());
+                    setX(temp.getX()-getAbsWidth());
                 }
                 if(getBoundsLeft().intersects(temp.getBounds())){
-                    setX(temp.getX()+temp.getWidth());
+                    setX(temp.getX()+temp.getAbsWidth());
                 }
             }
         }
@@ -74,26 +81,26 @@ public class Player extends GameObject{
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) (getX()+getWidth()/2-getWidth()/4),
-                (int) (getY()+getHeight()/2),
-                (int) getWidth()/2,
-                (int) getHeight()/2);
+        return new Rectangle((int) (getX()+getAbsWidth()/2-getAbsWidth()/4),
+                (int) (getY()+getAbsHeight()/2),
+                (int) getAbsWidth()/2,
+                (int) getAbsHeight()/2);
     }
 
     public Rectangle getBoundsTop(){
 
-        return new Rectangle((int) (getX()+getWidth()/2-getWidth()/4),
+        return new Rectangle((int) (getX()+getAbsWidth()/2-getAbsWidth()/4),
                 (int) (getY()),
-                (int) getWidth()/2,
-                (int) getHeight()/2);
+                (int) getAbsWidth()/2,
+                (int) getAbsHeight()/2);
     }
 
     public Rectangle getBoundsRight(){
 
-        return new Rectangle((int) (getX()+getWidth()-5),
+        return new Rectangle((int) (getX()+getAbsWidth()-5),
                 (int) (getY()+5),
                 5,
-                (int) getHeight()-10);
+                (int) getAbsHeight()-10);
 
 
     }
@@ -102,7 +109,7 @@ public class Player extends GameObject{
         return new Rectangle((int) (getX()),
                 (int) (getY()+5),
                 5,
-                (int) getHeight()-10);
+                (int) getAbsHeight()-10);
 
     }
 
@@ -122,5 +129,13 @@ public class Player extends GameObject{
 
     public void setJumped(boolean hasJumped){
         jumped = hasJumped;
+    }
+
+    public void setSpriteIndex(double spriteIndex){
+        this.spriteIndex = spriteIndex;
+    }
+
+    public double getSpriteIndex(){
+        return spriteIndex;
     }
 }

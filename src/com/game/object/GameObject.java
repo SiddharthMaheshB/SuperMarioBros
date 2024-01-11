@@ -4,6 +4,8 @@ import com.game.object.util.ObjectId;
 
 import java.awt.*;
 
+import static java.lang.Math.abs;
+
 public abstract class GameObject {
     private float x;
     private float y;
@@ -85,5 +87,11 @@ public abstract class GameObject {
         return height;
     }
 
+    public float getAbsWidth(){
+        return abs(width);
+    }
 
+    public float getAbsHeight(){
+        return abs(height);
+    }
 }

@@ -31,12 +31,14 @@ public class KeyInput extends KeyAdapter {
         //left
         if(key == KeyEvent.VK_A){
             handler.getPlayer().setVelX(-7);
+            handler.getPlayer().setWidth(-16);
             keyDown[1]=true;
         }
 
         //right
         if(key==KeyEvent.VK_D){
             handler.getPlayer().setVelX(7);
+            handler.getPlayer().setWidth(16);
             keyDown[2]=true;
         }
 
@@ -60,6 +62,7 @@ public class KeyInput extends KeyAdapter {
 
         if((!keyDown[1]) && (!keyDown[2])){
             handler.getPlayer().setVelX(0);
+            handler.getPlayer().setSpriteIndex(0);
         }
     }
 
