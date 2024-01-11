@@ -1,6 +1,7 @@
 package com.game.main;
 
 import com.game.gfx.Camera;
+import com.game.gfx.Texture;
 import com.game.gfx.Windows;
 import com.game.object.Block;
 import com.game.object.Player;
@@ -27,6 +28,7 @@ public class Game  extends Canvas implements Runnable{
     private Thread thread;
     private Handler handler;
     private Camera cam;
+    private static Texture tex;
     public Game() {
         initialize();
     }
@@ -35,16 +37,17 @@ public class Game  extends Canvas implements Runnable{
     }
 
     private void initialize(){
+        tex = new Texture();
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
 
         //testing
-        handler.setPlayer(new Player(32,32,1,handler));
+        handler.setPlayer(new Player(32,32,2,handler));
         for(int i=0;i<20;i++){
-            handler.addObj(new Block(i*32,32*10,32,32,1));
+            handler.addObj(new Block(i*32,32*10,32,32,1,1));
         }
         for(int i=0;i<30;i++){
-            handler.addObj(new Block(i*32, 32*15,32,32,1));
+            handler.addObj(new Block(i*32, 32*15,32,32,1,1));
         }
 
         cam = new Camera(0,SCREEN_OFFSET);
@@ -148,5 +151,9 @@ public class Game  extends Canvas implements Runnable{
 
     public static int getScreenHeight(){
         return SCREEN_HEIGHT;
+    }
+
+    public static Texture getTexture(){
+        return tex;
     }
 }
