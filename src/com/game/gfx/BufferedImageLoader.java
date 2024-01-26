@@ -15,3 +15,4 @@ public class BufferedImageLoader {
         return image;
     }
 }
+

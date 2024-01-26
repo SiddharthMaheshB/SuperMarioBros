@@ -31,3 +31,4 @@ public class Block extends GameObject{
         return new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
     }
 }
+

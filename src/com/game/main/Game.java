@@ -151,7 +151,7 @@ public class Game  extends Canvas implements Runnable{
         return WINDOW_WIDTH;
     }
 
-    public static int getScreenWidth(){
+    public static int getScreenWidth() {
         return SCREEN_WIDTH;
     }
 

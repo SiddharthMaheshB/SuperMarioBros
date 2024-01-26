@@ -91,7 +91,5 @@ public abstract class GameObject {
         return abs(width);
     }
 
-    public float getAbsHeight(){
-        return abs(height);
-    }
+    public float getAbsHeight(){return abs(height);}
 }
